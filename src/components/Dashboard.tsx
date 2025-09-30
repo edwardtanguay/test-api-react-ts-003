@@ -45,10 +45,14 @@ export const Dashboard = () => {
 		})();
 	}, [])
 
+	const handleSelectEmployee = (e) => {
+		console.log('selected');
+	}
+
 	return (
 		<div className="mt-3 bg-slate-300 p-3 rounded">
 
-			<select className="p-1 rounded">
+			<select className="px-2 py-1 rounded" onChange={(e)=>handleSelectEmployee(e)}>
 				{employees.map(emp => {
 					return (
 						<option key={emp.employeeID} value={emp.employeeID}>{emp.firstName} {emp.lastName}</option>
