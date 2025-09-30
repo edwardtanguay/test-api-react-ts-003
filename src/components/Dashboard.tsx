@@ -8,6 +8,7 @@ export const Dashboard = () => {
 	const [employees, setEmployees] = useState<Employee[]>([]);
 	const [orders, setOrders] = useState<Order[]>([]);
 	const [customers, setCustomers] = useState<Customer[]>([]);
+	const [employeeCustomers, setEmployeeCustomers] = useState<Customer[]>([]);
 
 	useEffect(() => {
 		(async () => {
@@ -48,7 +49,10 @@ export const Dashboard = () => {
 	const handleSelectEmployee = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const employeeID = e.target.value;
 		const employeeOrders = orders.filter(ord => String(ord.employeeID) === employeeID);
-		
+		const employeeCustomerIdList = employeeOrders.map(eo => eo.customerID);
+		const uniqueCustomerIdList = [...new Set(employeeCustomerIdList)];
+		const _employeeCustomers = customers.filter(cust => uniqueCustomerIdList.includes(cust.customerID));
+		setEmployeeCustomers(_employeeCustomers);
 	}
 
 	return (
@@ -62,6 +66,13 @@ export const Dashboard = () => {
 					)
 				})}
 			</select>
+			<ul>
+			{employeeCustomers.map(cust => {
+				return (
+					<li key={cust.customerID}>{cust.companyName}: <span className="font-semibold text-orange-900">{cust.contactName}</span>, {cust.contactTitle}, {cust.address.phone}</li>
+				)
+			})}
+			</ul>
 		</div>
 	)
 }
