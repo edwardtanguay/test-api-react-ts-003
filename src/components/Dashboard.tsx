@@ -21,7 +21,6 @@ export const Dashboard = () => {
 
 	return (
 		<div className="mt-3 bg-slate-200 p-3 rounded">
-			<h2 className="text-2xl">Dashboard</h2>
 			<p>Employees: {employees.length}</p>
 		</div>
 	)
