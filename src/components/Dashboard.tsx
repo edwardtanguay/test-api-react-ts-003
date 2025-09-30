@@ -47,7 +47,8 @@ export const Dashboard = () => {
 
 	const handleSelectEmployee = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const employeeID = e.target.value;
-		console.log('selected id: ' + employeeID);
+		const employeeOrders = orders.filter(ord => String(ord.employeeID) === employeeID);
+		
 	}
 
 	return (
