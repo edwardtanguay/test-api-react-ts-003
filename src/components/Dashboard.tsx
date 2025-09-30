@@ -45,14 +45,16 @@ export const Dashboard = () => {
 		})();
 	}, [])
 
-	const handleSelectEmployee = (e) => {
-		console.log('selected');
+	const handleSelectEmployee = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const employeeID = e.target.value;
+		console.log('selected id: ' + employeeID);
 	}
 
 	return (
 		<div className="mt-3 bg-slate-300 p-3 rounded">
 
-			<select className="px-2 py-1 rounded" onChange={(e)=>handleSelectEmployee(e)}>
+			<select className="px-2 py-1 rounded" onChange={(e) => handleSelectEmployee(e)}>
+				<option key={0} value={0}>PLEASE CHOOSE</option>
 				{employees.map(emp => {
 					return (
 						<option key={emp.employeeID} value={emp.employeeID}>{emp.firstName} {emp.lastName}</option>
